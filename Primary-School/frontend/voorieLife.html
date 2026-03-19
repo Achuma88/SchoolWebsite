@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>School Culture | Voorpos Primary</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo-container">
+    <img src="images/logo.png" alt="VP Primary Logo" class="school-logo">
+    <span class="logo-text">Voorpos Primary</span>
+ 
+
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="ourStory.html">OUR STORY</a></li>
+      <li><a href="learning.html">LEARNING</a></li>
+      <li><a href="sport.html">SPORT</a></li>
+      <li><a href="voorieLife.html">VOORIE LIFE</a></li>
+      <li><a href="#spo">EVENTS</a></li>
+      <li><a href="#contact">GET IN TOUCH</a></li>
+    </ul>
+
+    <a href="#contact" class="login-btn">APPLICATION FORMS</a>
+  </nav>
+<!-- PAGE HERO -->
+
+
+<!-- HERO SECTION -->
+
+<section class="culture-hero">
+
+<h1>Life at Voorpos Primary</h1>
+
+<p>
+At Voorpos Primary we believe that school is more than just learning.
+Our culture promotes respect, teamwork, creativity and leadership.
+</p>
+
+</section>
+
+<!-- VALUES SECTION -->
+
+<section class="culture-values">
+
+  <h2>Our School Values</h2>
+  <div class="values-grid">
+     <div class="value-card">
+         <h3>Respect</h3>
+         <p>We respect ourselves, our teachers and our community.</p>
+     </div>
+
+     <div class="value-card">
+         <h3>Teamwork</h3>
+         <p>We work together to support and encourage each other.</p>
+     </div>
+
+     <div class="value-card">
+         <h3>Leadership</h3>
+         <p>We develop young leaders who inspire others.</p>
+     </div>
+
+     <div class="value-card">
+         <h3>Responsibility</h3>
+         <p>We take pride in our actions and our learning.</p>
+     </div>
+  </div>
+
+</section>
+
+<!-- SCHOOL ACTIVITIES -->
+
+<section class="culture-activities">
+
+<h2>Student Life</h2>
+<p class="section-intro">
+At Voorpos Primary, student life goes beyond the classroom. We provide a balanced environment where learners grow academically, creatively, and socially. Through a variety of activities, we encourage curiosity, teamwork, and confidence, helping every child develop their full potential.<br> Through these activities, friendships are built, talents are discovered, and a strong sense of belonging is created — making Voorpos Primary a true family.
+</p>
+<div class="activities-grid">
+
+<!-- CARD 1 -->
+<div class="activity-card">
+
+<div class="card-slider">
+<img class="slide active" src="images/readAloud1.jpg">
+<img class="slide" src="images/readAloud2.jpg">
+<img class="slide" src="images/sgb2.jpg">
+</div>
+
+<h3>Art & Academics</h3>
+<p>Fun academic activities that encourage learners to explore.</p>
+
+<button class="read-more-btn"
+data-title="Academics"
+data-info="Our academic programmes include reading sessions, group learning, competitions, and interactive lessons that help learners build strong foundations and confidence.These include Spelling Bee Letter Day, Reading Day, Career day, etc.">
+Read More
+</button>
+
+</div>
+
+
+<!-- CARD 2 -->
+<div class="activity-card">
+
+<div class="card-slider">
+<img class="slide active" src="images/gradeR.jpg">
+<img class="slide" src="images/sgb4.jpg">
+<img class="slide" src="images/sgb2.jpg">
+</div>
+
+<h3>Music & Sport</h3>
+<p>Creative expression through music and sport.</p>
+
+<button class="read-more-btn"
+data-title="Music & Sport"
+data-info="Learners explore their creativity through singing, field performances, and cultural activities that build confidence and self-expression.These include sport matches & tournament and music festivals.">
+Read More
+</button>
+
+</div>
+
+
+<!-- CARD 3 -->
+<div class="activity-card">
+
+<div class="card-slider">
+<img class="slide active" src="images/sgb4.jpg">
+<img class="slide" src="images/sgb2.jpg">
+<img class="slide" src="images/sp2.jpg">
+</div>
+
+<h3>Outdoor Entertainment</h3>
+<p>Chess club, reading club and leadership clubs.</p>
+
+<button class="read-more-btn"
+data-title="Outdoor Activities"
+data-info="Outdoor entertainment that promote teamwork, leadership, and physical well-being through group challenges, and fun outdoor learning experiences.These include events like SGB Braai, The Big Walk, Water Fun Day, etc.">
+Read More
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- QUOTE SECTION -->
+
+<section class="culture-quote">
+
+<h2>"Growing Together as a School Community"</h2>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="main-footer">
+
+<p>© 2026 Voorpos Primary School</p>
+
+</footer>
+<div class="modal" id="activityModal">
+
+<div class="modal-content">
+
+<span class="close-modal">&times;</span>
+
+<h2 id="modalTitle"></h2>
+<p id="modalText"></p>
+
+</div>
+
+</div>
+<button id="topBtn">↑</button>
+<script>
+    document.querySelectorAll(".card-slider").forEach(slider => {
+
+const slides = slider.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+
+slides[index].classList.remove("active");
+
+index = (index + 1) % slides.length;
+
+slides[index].classList.add("active");
+
+}, 3000);
+
+});
+window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+  const modal = document.getElementById("activityModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const closeModal = document.querySelector(".close-modal");
+
+document.querySelectorAll(".read-more-btn").forEach(button => {
+
+button.addEventListener("click", function(){
+
+modal.style.display = "flex";
+
+modalTitle.textContent = this.getAttribute("data-title");
+modalText.textContent = this.getAttribute("data-info");
+
+});
+
+});
+
+closeModal.onclick = function(){
+modal.style.display = "none";
+};
+
+window.onclick = function(e){
+if(e.target === modal){
+modal.style.display = "none";
+}
+};
+const topBtn = document.getElementById("topBtn");
+
+window.onscroll = () => {
+topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+};
+
+topBtn.onclick = () => {
+window.scrollTo({top:0, behavior:"smooth"});
+};
+</script>
+
+</body>
+</html>

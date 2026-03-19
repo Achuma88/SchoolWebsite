@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Events | Voorpos Primary</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo-container">
+    <img src="images/logo.png" alt="VP Primary Logo" class="school-logo">
+    <span class="logo-text">Voorpos Primary</span>
+ 
+
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="ourStory.html">OUR STORY</a></li>
+      <li><a href="learning.html">LEARNING</a></li>
+      <li><a href="sport.html">SPORT</a></li>
+      <li><a href="voorieLife.html">VOORIE LIFE</a></li>
+      <li><a href="#spo">EVENTS</a></li>
+      <li><a href="#contact">GET IN TOUCH</a></li>
+    </ul>
+
+    <a href="#contact" class="login-btn">APPLICATION FORMS</a>
+  </nav>
+
+<!-- HERO -->
+<section class="events-hero">
+  <h1>School Events</h1>
+  <p>Stay updated with all the exciting activities happening at Voorpos Primary.</p>
+</section>
+
+<!-- EVENTS SECTION -->
+<section class="events-section">
+
+<h2>Upcoming Events</h2>
+
+<!-- 🔥 IMPORTANT: This is where JS will inject events -->
+<div class="events-grid" id="eventsContainer"></div>
+
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="eventModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+  <p>© 2026 Voorpos Primary School</p>
+</footer>
+
+<!-- EVENTS SCRIPT -->
+<script src="events.js"></script>
+
+<script>
+/* MODAL FUNCTION (UPDATED FOR DYNAMIC CONTENT) */
+
+const modal = document.getElementById("eventModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+
+// 👇 Use EVENT DELEGATION (works for dynamic cards)
+document.addEventListener("click", function(e){
+
+if(e.target.classList.contains("event-btn")){
+
+modal.style.display = "flex";
+
+modalTitle.textContent = e.target.dataset.title;
+modalText.textContent = e.target.dataset.info;
+
+}
+
+});
+
+document.querySelector(".close-modal").onclick = () => {
+modal.style.display = "none";
+};
+
+window.onclick = (e) => {
+if(e.target === modal){
+modal.style.display = "none";
+}
+};
+</script>
+
+</body>
+</html>

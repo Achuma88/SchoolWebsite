@@ -1,0 +1,12 @@
+# Node.js
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# .NET build folders (safe to ignore even if unused)
+bin/
+obj/

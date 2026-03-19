@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard | Voorpos Primary</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo-container">
+    <img src="images/logo.png" alt="VP Primary Logo" class="school-logo">
+    <span class="logo-text">Voorpos Primary</span>
+  </div> <!-- ✅ FIXED -->
+
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="ourStory.html">OUR STORY</a></li>
+    <li><a href="learning.html">LEARNING</a></li>
+    <li><a href="sport.html">SPORT</a></li>
+    <li><a href="voorieLife.html">VOORIE LIFE</a></li>
+    <li><a href="events.html">EVENTS</a></li>
+    <li><a href="#contact">GET IN TOUCH</a></li>
+  </ul>
+
+  <a href="#contact" class="login-btn">APPLICATION FORMS</a>
+</nav>
+
+<h1 style="text-align:center;">Admin Dashboard</h1>
+
+<section class="admin-section">
+
+<h2>Add New Event</h2>
+
+<form id="eventForm" enctype="multipart/form-data">
+
+<div class="form-group">
+  <label>Event Title</label>
+  <input type="text" id="title" name="title" placeholder="Event Title" required>
+</div>
+
+<div class="form-group">
+  <label>Date</label>
+  <input type="date" id="date" name="date" required>
+</div>
+
+<div class="form-group">
+  <label>Description</label>
+  <textarea id="description" name="description" placeholder="Event Description" required></textarea>
+</div>
+
+<div class="form-group">
+  <label>Upload Image</label>
+  <input type="file" id="image" name="image" accept="image/*">
+</div>
+
+<button type="submit">Add Event</button>
+
+</form>
+
+<p id="statusMessage"></p>
+
+</section>
+
+<script>
+
+document.getElementById("eventForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const formData = new FormData();
+
+formData.append("title", document.getElementById("title").value);
+formData.append("date", document.getElementById("date").vue);
+formData.append("description", document.getElementById("description").value);
+
+const file = document.getElementById("image").files[0];
+if(file){
+  formData.append("image", file);
+}
+
+try {
+
+const res = await fetch("http://localhost:5000/api/events", {
+  method: "POST",
+  body: formData
+});
+
+const data = await res.json();
+
+if(res.ok){
+  document.getElementById("statusMessage").textContent = "✅ Event added successfully!";
+} else {
+  document.getElementById("statusMessage").textContent = "❌ " + data.message;
+}
+
+document.getElementById("eventForm").reset();
+
+} catch (error) {
+
+console.error(error);
+document.getElementById("statusMessage").textContent = "❌ Server error";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
